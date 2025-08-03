@@ -1,0 +1,369 @@
+  * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: 'Garet';
+  src: url('../Fonts/Garet-Book.ttf') format('truetype'),
+       url('../Fonts/Garet-Book.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+html {
+  font-size: clamp(14px, 2vw, 16px);
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  font-size: 1rem; /* default 16px */
+  /* Menambahkan layout fleksibel untuk body */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.bg-img {
+  position: absolute;
+  width: 100%;
+  z-index: -1;
+  object-fit: contain;
+  max-width: 100%;
+  height: auto;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+}
+
+/* Wrapper untuk layout fleksibel */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+nav {
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0.625rem 1.25rem; /* 10px 20px */
+  position: relative;
+  z-index: 10000;
+}
+
+nav .navbar-logo {
+  height: 2.5rem; /* 40px */
+  margin-right: 1.25rem; /* 20px */
+  margin-left: 0.3125rem; /* 5px */
+  max-width: 100%;
+  height: auto;
+}
+
+/* Hamburger Menu */
+.navbar-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 0.5rem;
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10001;
+}
+
+.navbar-toggle span {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  margin: 3px 0;
+  transition: 0.3s;
+}
+
+/* Animasi untuk hamburger menu saat aktif */
+.navbar-toggle.active span:nth-child(1) {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.navbar-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar-toggle.active span:nth-child(3) {
+  transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* Menjaga ukuran logo tetap proporsional di desktop */
+@media screen and (min-width: 1024px) {
+  nav .navbar-logo {
+    height: 2.5rem; /* Ukuran tetap di desktop */
+    max-width: none;
+  }
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
+  width: auto;
+}
+
+/* Tampilkan menu di desktop */
+@media screen and (min-width: 1024px) {
+  .navbar-toggle {
+    display: none;
+  }
+  
+  .navbar-menu {
+    display: flex;
+  }
+}
+
+nav ul li {
+  margin-right: clamp(1rem, 2vw, 3.125rem); /* Margin fleksibel, lebih kecil */
+}
+
+nav ul li a {
+  color: grey;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: 'Garet';
+  font-size: clamp(0.7rem, 1.2vw, 0.9rem); /* Ukuran font fleksibel, lebih kecil di mobile */
+}
+
+nav ul li a:hover {
+  color: white;
+}
+
+/* Menu dropdown untuk mobile */
+.navbar-menu {
+  display: flex;
+  margin-left: auto;
+  flex: 1;
+  justify-content: center;
+}
+
+/* Sembunyikan menu di mobile dan tablet */
+@media screen and (max-width: 1023px) {
+  .navbar-menu {
+    display: none;
+  }
+  
+  .navbar-menu.active {
+    display: flex;
+  }
+}
+
+header, main, footer {
+  text-align: center;
+  width: 100%;
+  max-width: 100%;
+}
+
+header {
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem); /* Ukuran font fleksibel */
+  font-weight: bold;
+  padding: clamp(0.5rem, 1vw, 1rem);
+}
+
+main {
+  min-height: 25rem; /* 400px */
+  flex: 1;
+}
+
+footer {
+  font-size: clamp(0.8rem, 1.2vw, 0.9rem); /* Ukuran font fleksibel */
+  padding: clamp(0.5rem, 1vw, 1rem);
+}
+
+.background-element {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: -1;
+  object-fit: contain;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Responsive Design */
+/* Untuk layar mobile (max-width: 767px) */
+@media screen and (max-width: 767px) {
+  .navbar-toggle {
+    display: flex;
+  }
+  
+  .navbar-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 70%;
+    background-color: rgba(0, 0, 0, 0.9);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    padding: 2rem 0;
+  }
+  
+  .navbar-menu.active {
+    display: flex;
+  }
+  
+  nav {
+    flex-direction: row;
+    align-items: center;
+    padding: 0.625rem 1rem;
+  }
+
+  nav .navbar-logo {
+    height: 2rem;
+    margin: 0 auto;
+  }
+
+  nav ul {
+    flex-direction: column;
+    width: 100%;
+    margin-top: 0;
+  }
+
+  nav ul li {
+    margin: 1rem 0;
+    text-align: center;
+    width: 100%;
+  }
+
+  nav ul li a {
+    font-size: 1.2rem; /* Ukuran font lebih besar di mobile menu */
+    display: block;
+    padding: 1rem 0;
+    width: 100%;
+  }
+
+  header {
+    font-size: 1.25rem;
+    padding: 0.625rem;
+  }
+
+  main {
+    min-height: 20rem;
+    padding: 0.625rem;
+  }
+
+  .bg-img, .background-element {
+    object-fit: cover;
+  }
+
+  footer {
+    font-size: 0.8rem;
+    padding: 0.625rem;
+  }
+}
+
+/* Untuk layar tablet (min-width: 768px and max-width: 1023px) */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .navbar-toggle {
+    display: flex !important;
+  }
+
+  .navbar-menu.active {
+    padding: 0.75rem 0; /* Perkecil padding saat menu aktif */
+  }
+
+  nav {
+    padding: 0.5rem 0.75rem; /* Perkecil padding navbar */
+  }
+
+  nav .navbar-logo {
+    height: clamp(1.8rem, 3.5vw, 2.5rem); /* ukuran logo fleksibel, diperkecil */
+    max-width: clamp(180px, 55%, 350px); /* batas maksimal lebar logo fleksibel, diperkecil */
+  }
+
+  nav ul li {
+    margin-right: 1.5rem; /* Perkecil margin */
+  }
+
+  nav ul li a {
+    font-size: 0.8rem; /* Perkecil ukuran font */
+  }
+
+  header {
+    font-size: 1.375rem;
+  }
+
+  main {
+    min-height: 22rem;
+  }
+}
+
+/* Untuk layar desktop kecil (min-width: 1024px and max-width: 1199px) */
+@media screen and (min-width: 1024px) and (max-width: 1199px) {
+  nav ul li {
+    margin-right: 2.5rem;
+  }
+
+  nav ul li a {
+    font-size: 0.875rem;
+  }
+}
+
+/* Untuk layar desktop besar (min-width: 1200px) */
+@media screen and (min-width: 1200px) {
+  nav ul li {
+    margin-right: 3.125rem;
+  }
+
+  nav ul li a {
+    font-size: 0.9rem;
+  }
+}
+
+/* Scalable Images */
+.bg-img, .background-element, img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Flexible Content Sections */
+section {
+  max-width: 100%;
+  padding: clamp(0.625rem, 2vw, 1.25rem); /* Padding fleksibel */
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* Responsive Typography */
+@media screen and (max-width: 767px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+/* Menambahkan grid layout untuk sections */
+#about, #product, #contact {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1rem, 2vw, 2rem); /* Jarak antar elemen fleksibel */
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
