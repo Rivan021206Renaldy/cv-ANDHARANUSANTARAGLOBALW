@@ -118,14 +118,23 @@ nav ul {
   width: auto;
 }
 
-/* Tampilkan menu di desktop */
+/* Tampilkan menu di desktop - navbar selalu terlihat di desktop */
 @media screen and (min-width: 1024px) {
   .navbar-toggle {
-    display: none;
+    display: none !important;
   }
   
   .navbar-menu {
-    display: flex;
+    display: flex !important;
+    position: static;
+    height: auto;
+    width: auto;
+    background-color: transparent;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    z-index: auto;
+    padding: 0;
   }
 }
 
